@@ -55,7 +55,7 @@ pinMap.in2 = D3; //Digital output D3 is connected to driver AIN2 input
 pinMap.pwm = D4; //Digital output D4 is connected to driver PWMA input
 pinMap.stby = D5; //Digital output D5 is connected to driver STBY input
 
-Motor motor = new Motor(&pinMap);
+Motor motor(&pinMap);
 ```
 
 ##### brake
