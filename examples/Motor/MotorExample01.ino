@@ -44,7 +44,7 @@ void loop()
         // Run the motor clockwise at current speed
         motor->run(Direction::Clockwise, speed);
 
-        // Perform a delay of 100ms
+        // Perform a delay of 50ms
         delay(50);
 
         // Increase the speed value.
