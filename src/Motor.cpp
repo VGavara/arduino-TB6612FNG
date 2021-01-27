@@ -7,6 +7,11 @@
 
 // Public functions
 
+/**
+ * Creates a motor controlled by a TB6612FNG driver
+ * @constructor
+ * @param {PinMap*} pinMap - Mapping of motor inputs and Arduino pins
+ */
 Motor::Motor(PinMap *pinMap)
 {
     // Copy the IO mapping
@@ -23,6 +28,11 @@ Motor::Motor(PinMap *pinMap)
         pinMode(pinMap_.stby, OUTPUT);
 }
 
+/**
+ * Runs the motor in a given direction at a given speed
+ * @param {Direction} direction - Motor rotation direction
+ * @param {uint8_t} speed - Motor rotation spped, from 1 to 255
+ */
 void Motor::run(Direction direction, uint8_t speed)
 {
     // Clear standby mode
@@ -35,16 +45,25 @@ void Motor::run(Direction direction, uint8_t speed)
     setRotationSpeed_(&pinMap_, speed);
 }
 
+/**
+ * Stops the motor
+ */
 void Motor::stop()
 {
     stopRotation_(&pinMap_);
 }
 
+/**
+ * Short-brakes the motor
+ */
 void Motor::brake()
 {
     brakeRotation_(&pinMap_);
 }
 
+/**
+ * Sets the motor driver in standby mode
+ */
 void Motor::standBy()
 {
     setStandBy_(&pinMap_);
@@ -52,21 +71,30 @@ void Motor::standBy()
 
 // Private functions
 
-// Set Clockwise rotation
+/**
+ * Sets clockwise rotation
+ * @param {PinMap*} pinMap - Mapping of motor inputs and Arduino pins
+ */
 void Motor::rotateCW_(PinMap *pinMap)
 {
     digitalWrite(pinMap->in1, HIGH);
     digitalWrite(pinMap->in2, LOW);
 }
 
-// Set CounterClockwise rotation
+/**
+ * Sets counter-clockwise rotation
+ * @param {PinMap*} pinMap - Mapping of motor inputs and Arduino pins
+ */
 void Motor::rotateCCW_(PinMap *pinMap)
 {
     digitalWrite(pinMap->in1, LOW);
     digitalWrite(pinMap->in2, HIGH);
 }
 
-// Sets the driver in standby mode
+/**
+ * Sets the driver in standby mode
+ * @param {PinMap*} pinMap - Mapping of motor inputs and Arduino pins
+ */
 void Motor::setStandBy_(PinMap *pinMap)
 {
     // If the standby pin is configured, reset it
@@ -74,7 +102,10 @@ void Motor::setStandBy_(PinMap *pinMap)
         digitalWrite(pinMap->stby, LOW);
 }
 
-// Sets the driver in normal (non-standby) mode
+/**
+ * Sets the driver in operating (non-standby) mode
+ * @param {PinMap*} pinMap - Mapping of motor inputs and Arduino pins
+ */
 void Motor::clearStandBy_(PinMap *pinMap)
 {
     // If the standby pin is configured, set it
@@ -82,7 +113,11 @@ void Motor::clearStandBy_(PinMap *pinMap)
         digitalWrite(pinMap->stby, HIGH);
 }
 
-// Sets a PWM duty cycle to make the motor rotate
+/**
+ * Sets a PWM duty cycle to make the motor rotate
+ * @param {PinMap*} pinMap - Mapping of motor inputs and Arduino pins
+ * @param {uint8_t} speed - Motor rotation speed, as PWM duty cycle
+ */
 void Motor::setRotationSpeed_(PinMap *pinMap, uint8_t speed)
 {
     // If the speed value is in range, set it as PWM duty cycle
@@ -92,8 +127,10 @@ void Motor::setRotationSpeed_(PinMap *pinMap, uint8_t speed)
         analogWrite(pinMap->pwm, speed);
 }
 
-// Sets the motor in a idle state.
-// That means that the motor could still rotate due to inertia.
+/**
+ * Sets the motor in a idle state
+ * @param {PinMap*} pinMap - Mapping of motor inputs and Arduino pins
+ */
 void Motor::stopRotation_(PinMap *pinMap)
 {
     digitalWrite(pinMap->in1, LOW);
@@ -101,9 +138,10 @@ void Motor::stopRotation_(PinMap *pinMap)
     analogWrite(pinMap->pwm, 255);
 }
 
-// Brakes the motor
-// Note that braking implies cancelling the inertial motor rotation,
-// and therefore is an energy consuming process
+/**
+ * Brakes the motor
+ * @param {PinMap*} pinMap - Mapping of motor inputs and Arduino pins
+ */
 void Motor::brakeRotation_(PinMap *pinMap)
 {
     analogWrite(pinMap->pwm, 0);

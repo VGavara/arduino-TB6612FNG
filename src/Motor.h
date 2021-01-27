@@ -8,14 +8,24 @@
 
 #include <Arduino.h>
 
-// Rotation directions
+/**
+ * Rotation directions
+ * @enum
+ */
 enum Direction
 {
     Clockwise = 1,
     CounterClockwise = -1
 };
 
-// Arduino output to driver input pin mapping
+/**
+ * Arduino output to driver input pin mapping
+ * @typedef {struct} PinMap
+ * @property {pin_size_t}} in1 - Arduino pin id connected to driver's AIN1/BIN1 input
+ * @property {pin_size_t}} in2 - Arduino pin id connected to driver's AIN2/BIN2 input
+ * @property {pin_size_t}} pwm - Arduino pin id connected to driver's PWMA/PWMB input
+ * @property {pin_size_t}} stby - Arduino pin id connected to driver's STBY input
+ */
 typedef struct
 {
     pin_size_t in1;
@@ -24,36 +34,47 @@ typedef struct
     pin_size_t stby;
 } PinMap;
 
-// Interfaces a motor controlled by a TB6612FNG driver
+/**
+ * Represents a motor controlled by a TB6612FNG driver
+ * @class
+ */
 class Motor
 {
 public:
-    // Summary: Initializes the Motor class
-    // Param pinMap: Mapping of motor inputs and Arduino pins
-    // Note: Set pinMap.stby to 0 to disable driver standby management
-    // Note: The mapped Arduino pins will be initialized by this function
+    /**
+     * Creates a motor controlled by a TB6612FNG driver
+     * @constructor
+     * @param {PinMap*} pinMap - Mapping of motor inputs and Arduino pins
+     * @note Set pinMap.stby to 0 to disable driver standby management
+     * @note The mapped Arduino pins will be initialized by this function
+     */
     Motor(PinMap *pinMap);
 
-    // Summary: Runs the motor in a given direction at a given speed
-    // Param direction: Rotation direction
-    // Param speed: Rotation speed, from 1 to 255
-    // Note: Standby mode will be switched off if this function is invoked
+    /**
+     * Runs the motor in a given direction at a given speed
+     * @param {Direction} direction - Motor rotation direction
+     * @param {uint8_t} speed - Motor rotation spped, from 1 to 255
+     * @note Standby mode will be switched off if this function is invoked
+     * @note Spinning will be aborted if this function is invoked
+     */
     void run(Direction direction, uint8_t speed);
 
-    // Summary: Stops the motor
-    // Note: Stopping just cuts the motor power supply,
-    //  therefore doesn't cancel the motor inertial rotation.
-    //  Use Brake() if you want to cancel the inertial rotation.
+    /**
+     * Stops the motor
+     * @note Spinning will be aborted if this function is invoked
+     */
     void stop();
 
-    // Summary: Short-brakes the motor
-    // Note: Short-braking cancels the inertial motor rotation,
-    //  therefore is an energy consuming process
+    /**
+     * Short-brakes the motor
+     * @note Spinning will be aborted if this function is invoked
+     */
     void brake();
 
-    // Summary: Sets the driver in standby mode
-    // Note: This function does nothing if the class constructor
-    //  was called with io_map.stby set to 0
+    /**
+     * Sets the motor driver in standby mode
+     * @note This function does nothing if the class constructor was called with pinMap.stby set to 0
+     */
     void standBy();
 
 private:
