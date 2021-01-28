@@ -65,7 +65,7 @@ const SpinPoint *Spinner::start(Direction direction, SpinPoint spinMap[])
  */
 const SpinPoint *Spinner::spin()
 {
-    unsigned short currentmapPointIndex;
+    uint8_t currentmapPointIndex;
 
     // If there's no map, there's no spin in progress: quit
     if (map_ == NULL)
@@ -84,7 +84,7 @@ const SpinPoint *Spinner::spin()
     currentmapPointIndex = refreshSpinCourse_(map_, mapSize_, spinElapsedTime);
 
     // Set the new speed
-    byte newSpeed;
+    uint8_t newSpeed;
     if (currentmapPointIndex == mapSize_ - 1)
     {
         // The spin is beyond the latest map point: the operation is finished
@@ -148,10 +148,10 @@ const SpinPoint *Spinner::abort()
 /**
  * Checks the integrity of a spin map
  * @param {SpinPoint[]} spinMap - Spin map
- * @param {uint16_t} mapSize_ - Spin map items
+ * @param {uint8_t} mapSize_ - Spin map items
  * @returns {bool} True if the spin map passes the integrity checks
  */
-bool Spinner::checkSpinMap_(SpinPoint spinMap[], unsigned short mapSize_)
+bool Spinner::checkSpinMap_(SpinPoint spinMap[], uint8_t mapSize_)
 {
 #ifdef TB6612FNG_OMIT_SPINMAP_INTEGRITY_CHECK
     return true;
@@ -165,7 +165,7 @@ bool Spinner::checkSpinMap_(SpinPoint spinMap[], unsigned short mapSize_)
         return false;
 
     // Every map point time must be higher than its predecessor's
-    uint32_t previousSpinTime = spinMap[0].time;
+    uint16_t previousSpinTime = spinMap[0].time;
     for (int i = 1; i < mapSize_; i++)
     {
         if (spinMap[i].time <= previousSpinTime)
@@ -212,13 +212,13 @@ void Spinner::updateSpeed_(Motor *motor, Direction spinDirection, SpinPoint *spi
 /**
  * Returns the last reached spin map point given an elapsed time since the spin start
  * @param {SpinPoint*} map - Spin map, or array of spin points
- * @param {unsigned short} mapCount - Size of the spin map, ie, number of map points stored in the spin map
+ * @param {uint8_t} mapCount - Size of the spin map, ie, number of map points stored in the spin map
  * @param {unsigned long} elapsedTime - Elapsed time, in milliseconds, since the spin start
- * @returns {unsigned short} Index of the next map spin point
+ * @returns {uint8_t} Index of the next map spin point
  */
-unsigned short Spinner::refreshSpinCourse_(SpinPoint map[], unsigned short mapCount, unsigned long elapsedTime)
+uint8_t Spinner::refreshSpinCourse_(SpinPoint map[], uint8_t mapCount, unsigned long elapsedTime)
 {
-    unsigned short mapPoint = 0;
+    uint8_t mapPoint = 0;
     while (mapPoint < mapCount && elapsedTime > map[mapPoint].time)
     {
         mapPoint++;
@@ -228,14 +228,14 @@ unsigned short Spinner::refreshSpinCourse_(SpinPoint map[], unsigned short mapCo
 
 /**
  * Returns the Y coordinate of a point in a line given its X coordinate
- * @param {unsigned int} x1 - X coordinate of the line point 1
- * @param {unsigned int} y1 - Y coordinate of the line point 1
- * @param {unsigned int} x2 - X coordinate of the line point 2
- * @param {unsigned int} y2 - Y coordinate of the line point 2
- * @param {unsigned int} x - X coordinate of the line point whose Y coordinate must be obtained
- * @return {unsigned int} Y coordinate of the line point with X coordinate equal to x
+ * @param {uint16_t} x1 - X coordinate of the line point 1
+ * @param {uint16_t} y1 - Y coordinate of the line point 1
+ * @param {uint16_t} x2 - X coordinate of the line point 2
+ * @param {uint16_t} y2 - Y coordinate of the line point 2
+ * @param {uint16_t} x - X coordinate of the line point whose Y coordinate must be obtained
+ * @return {uint16_t} Y coordinate of the line point with X coordinate equal to x
  */
-unsigned int Spinner::getLinePointY_(unsigned int x1, unsigned int y1, unsigned int x2, unsigned int y2, unsigned int x)
+uint16_t Spinner::getLinePointY_(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint16_t x)
 {
     return y1 + round(((double)x / (x2 - x1)) * (y2 - y1));
 }
