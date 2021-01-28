@@ -1,6 +1,5 @@
 # Arduino TB6612FNG library
-https://img.shields.io/github/license/vgavara/ArduinoTB6612FNG
-[![License: MIT]](https://img.shields.io/github/license/vgavara/ArduinoTB6612FNG)
+![License:](https://img.shields.io/github/license/vgavara/ArduinoTB6612FNG)
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/VGavara/ArduinoTB6612FNG?include_prereleases)
 
 # Table of contents
