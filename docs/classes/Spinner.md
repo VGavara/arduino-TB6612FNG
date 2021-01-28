@@ -8,7 +8,7 @@
   * [Constructor](#constructor)
   * [abort()](#abort--)
   * [spin()](#spin--)
-  * [startSpin()](#start--)
+  * [start()](#start--)
 - [Enums](#enums)
   * [Direction](#direction)
 - [Structs](#structs)
