@@ -35,7 +35,7 @@ When an spin map is assigned to a spinning process, an integrity check is done b
 
 1. A map must have at least two spin points.
 2. The first map point must have its time set to zero.
-3. The elapsed time of an spin point cannot be lower than its predecessor.
+3. The elapsed time of an spin point cannot be lower than the preceding point time.
 
 
 ## How Spinner works
@@ -94,11 +94,11 @@ Spinner spinner(&motor);
 // and the elapsed time (milliseconds) from the spin start.
 void spinUpdated(const SpinPoint *spinPoint)
 {
-    Serial.print("Spin updated. ");
-    Serial.print("Speed: ");
-    Serial.print(spinPoint->speed);
-    Serial.print(" Elapsed time: ");
-    Serial.println(spinPoint->time);
+  Serial.print("Spin updated. ");
+  Serial.print("Speed: ");
+  Serial.print(spinPoint->speed);
+  Serial.print(" Elapsed time: ");
+  Serial.println(spinPoint->time);
 }
 
 // Callback function for the spinner event of spin finished
@@ -109,11 +109,11 @@ void spinUpdated(const SpinPoint *spinPoint)
 // that could be higher to that set in the spin map last point.
 void spinFinished(const SpinPoint *spinPoint)
 {
-    Serial.print("Spin finished");
-    Serial.print("Final speed: ");
-    Serial.print(spinPoint->speed);
-    Serial.print(" Overall spin ellapsed time: ");
-    Serial.println(spinPoint->time);
+  Serial.print("Spin finished");
+  Serial.print("Final speed: ");
+  Serial.print(spinPoint->speed);
+  Serial.print(" Overall spin ellapsed time: ");
+  Serial.println(spinPoint->time);
 }
 
 // Define digital IO ids
@@ -152,13 +152,14 @@ Pointer to a `SpinPoint` struct containing the last reached spin map point, or `
 ```C++
 SpinPoint currentSpinPoint = spinner.abort();
 if (currentSpinPoint) {
-    Serial.print("Current spin speed when aborted: ");
-    Serial.print(spinPoint->speed);
-    Serial.print(" Elapsed time when aborted: ");
-    Serial.println(spinPoint->time);
+  Serial.print("Spin operation aborted.");
+  Serial.print(" Current speed: ");
+  Serial.print(spinPoint->speed);
+  Serial.print(" Elapsed time: ");
+  Serial.println(spinPoint->time);
 }
 else {
-    Serial.print("No spin operation aborted");
+  Serial.print("No spin operation aborted");
 }
 ```
 
@@ -247,7 +248,6 @@ enum Direction
 }
 ```
 
-
 # Structs
 
 ## SpinPoint
@@ -256,10 +256,10 @@ Represents a duple speed-time in a spinning process, ie, the motor speed (from 1
 ```C++
 struct SpinPoint
 {
-    byte speed;
-    unsigned int time;
+    uint8_t speed;
+    uint16_t time;
 };
 ```
 
 * Field `speed` represents the motor speed in a scale from 1 to 255.
-* Field `time` represents the elapsed time, in milliseconds, after start spinning in which speed is achieved.
+* Field `time` represents the elapsed time, from 1 to 65535 milliseconds, after start spinning in which `speed` is reached.

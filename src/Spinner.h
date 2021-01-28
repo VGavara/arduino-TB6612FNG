@@ -11,14 +11,14 @@
 /**
  * Spin point
  * @typedef {struct} SpinPoint
- * @property {byte}} speed - Spin speed, from 1 to 255
- * @property {unsigned int}} time - Elapsed time from the spin start, in milliseconds, in which speed must be reached
+ * @property {uint8_t}} speed - Spin speed, from 1 to 255
+ * @property {uint16_t} time - Elapsed time from the spin start, from 0 to 65535 milliseconds, in which speed must be reached
  * @example A spinPoint with value {20,100} indicates that, after 100 milliseconds of start spinning, a speed of 20 must be reached
  */
 struct SpinPoint
 {
-    byte speed;
-    unsigned int time;
+    uint8_t speed;
+    uint16_t time;
 };
 
 /**
@@ -77,21 +77,21 @@ private:
     Motor *motor_;
 
     SpinPoint *map_;
-    unsigned short mapSize_;
+    uint8_t mapSize_;
 
     Direction spinDirection_;
     unsigned long spinStartTime_;
     SpinPoint currentSpinPoint_;
 
-    unsigned short currentMapPointIndex_;
+    uint8_t currentMapPointIndex_;
 
     SpinnerCB spinUpdatedCB_, spinFinishedCB_;
 
-    bool checkSpinMap_(SpinPoint[], unsigned short);
+    bool checkSpinMap_(SpinPoint[], uint8_t;
     unsigned long getElapsedTime_(unsigned long);
     void updateSpeed_(Motor *, Direction, SpinPoint *, SpinnerCB);
-    unsigned short refreshSpinCourse_(SpinPoint *, unsigned short, unsigned long);
-    unsigned int getLinePointY_(unsigned int x1, unsigned int y1, unsigned int x2, unsigned int y2, unsigned int x);
+    uint8_t refreshSpinCourse_(SpinPoint *, uint8_t, unsigned long);
+    uint16_t getLinePointY_(uint16_t, uint16_t, uint16_t, uint16_t, uint16_t);
 };
 
 #endif
