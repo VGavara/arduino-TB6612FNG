@@ -204,7 +204,15 @@ unsigned long Spinner::getElapsedTime_(unsigned long pastTime)
  */
 void Spinner::updateSpeed_(Motor *motor, Direction spinDirection, SpinPoint *spinPoint, SpinnerCB spinUpdatedCB)
 {
-    motor->run(spinDirection, spinPoint->speed);
+    if (spinPoint->speed > 0)
+    {
+        motor->run(spinDirection, spinPoint->speed);
+    }
+    else
+    {
+        motor->stop();
+    }
+
     if (spinUpdatedCB != NULL)
         spinUpdatedCB(spinPoint);
 }

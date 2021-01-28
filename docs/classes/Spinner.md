@@ -251,7 +251,7 @@ enum Direction
 # Structs
 
 ## SpinPoint
-Represents a duple speed-time in a spinning process, ie, the motor speed (from 1 to 255) *time* milliseconds after starting an spinning process.
+Represents a duple speed-time in a spinning process, ie, the motor speed (from 0 to 255) *time* milliseconds after starting an spinning process.
 
 ```C++
 struct SpinPoint
@@ -261,5 +261,5 @@ struct SpinPoint
 };
 ```
 
-* Field `speed` represents the motor speed in a scale from 1 to 255.
+* Field `speed` represents the motor speed in a scale from 0 to 255.
 * Field `time` represents the elapsed time, from 1 to 65535 milliseconds, after start spinning in which `speed` is reached.
