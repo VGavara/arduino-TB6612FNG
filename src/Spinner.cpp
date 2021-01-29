@@ -114,13 +114,13 @@ const SpinPoint *Spinner::spin()
     // If the map is completed, drop it and call the spin Finished callback (if defined)
     if (currentmapPointIndex == mapSize_ - 1)
     {
+        map_ = NULL;
         if (spinFinishedCB_)
         {
             currentSpinPoint_.speed = newSpeed;
             currentSpinPoint_.time = spinElapsedTime;
             spinFinishedCB_(&currentSpinPoint_);
         }
-        map_ = NULL;
     }
 
     return &currentSpinPoint_;
