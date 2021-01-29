@@ -9,8 +9,8 @@
   * [Constructor (2)](#constructor-2)
   * [abort()](#abort--)
   * [spin()](#spin--)
-  * [start()](#start--)
-  * [start() (2)](#start---2)
+  * [start()](#start)
+  * [start() (2)](#start-2)
 - [Enums](#enums)
   * [Direction](#direction)
 - [Types](#types)
@@ -226,7 +226,7 @@ const SpinPoint *start(Direction direction, SpinPoint spinMap[])
 Pointer to a read-only `SpinPoint` struct with the initial motor speed, or `NULL` if the spinning start failed due to a wrong spin map definition. See "Spin points and maps" section to get further information about map definition. See struct `SpinMap` documentation for further information.
 
 ### Notes
-* Only maps with two spin points are supported by this function. For maps with mor spin points, see [start (2)](#start----2-)
+* Only maps with two spin points are supported by this function. For maps with mor spin points, see [start (2)](#start-2)
 * Starting a spin operation will abort a previous running spinning operation.
 
 ### Example
