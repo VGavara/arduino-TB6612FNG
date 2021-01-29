@@ -5,8 +5,8 @@ The class `Driver`, together with the class `Motor`, can be considered the lowes
 - [Functions](#functions)
   * [Constructor](#constructor)
   * [Constructor (2)](#constructor-2)
-  * [getStandBy()](#getStandBy--)
-  * [setStandBy()](#setStandBy--)
+  * [standBy()](#standBy--)
+  * [standBy() (2)](#setStandBy---2)
 
 # Functions
 
@@ -59,34 +59,10 @@ const pin_size_t DSTBY = 5;
 Driver driver(DSTBY, false);
 ```
 
-## getStandBy()
-Returns the driver standby mode.
-```C++
-bool getStandBy()
-```
-
-### Returns
-`true` if the Arduino digital output is setting the driver in standby mode (ie, it is in low status), else `false`.
-
-### Example
-```C++
-#include <tb6612fng>
-
-// Define digital IO id
-const pin_size_t DSTBY = 5;
-
-// Create a Driver object instance using the Arduino digital output 5 
-// for managing the driver standby and set the driver in non-standby mode
-Driver driver(DSTBY, false);
-
-// A falsy return value is expected
-bool isStandby = driver.getStandBy();
-```
-
-## setStandBy()
+## standBy()
 Manages the driver standBy mode
 ```C++
-void setStandBy(bool standByOn)
+void standBy(bool standByOn)
 ```
 
 ### Arguments
@@ -104,5 +80,29 @@ const pin_size_t DSTBY = 5;
 Driver driver(DSTBY);
 
 // Set the driver in standby mode
-driver.setStandBy(true);
+driver.standBy(true);
+```
+
+## standBy() (2)
+Returns the driver standby mode.
+```C++
+bool standBy()
+```
+
+### Returns
+`true` if the Arduino digital output is setting the driver in standby mode (ie, it is in low status), else `false`.
+
+### Example
+```C++
+#include <tb6612fng>
+
+// Define digital IO id
+const pin_size_t DSTBY = 5;
+
+// Create a Driver object instance using the Arduino digital output 5 
+// for managing the driver standby and set the driver in non-standby mode
+Driver driver(DSTBY, false);
+
+// A falsy return value is expected
+bool isStandby = driver.standBy();
 ```
