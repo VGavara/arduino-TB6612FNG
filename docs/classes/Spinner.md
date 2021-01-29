@@ -6,11 +6,14 @@
   * [How Spinner works](#how-spinner-works)
 - [Functions](#functions)
   * [Constructor](#constructor)
+  * [Constructor (2)](#constructor-2-)
   * [abort()](#abort--)
   * [spin()](#spin--)
   * [start()](#start--)
 - [Enums](#enums)
   * [Direction](#direction)
+- [Types](#types)
+  * [SpinnerCB](#spinnercb)
 - [Structs](#structs)
   * [SpinPoint](#pinmap)
 
@@ -60,7 +63,7 @@ Spinner(Motor *motor)
 ### Arguments
 * `*motor`: Pointer to a `Motor` class representing the motor that is being spinned.
 
-### Example 1
+### Example
 ```C++
 #include <tb6612fng>
 
@@ -83,7 +86,18 @@ Motor motor(&pinMap);
 Spinner spinner(&motor);
 ```
 
-### Example 2
+## Constructor (2)
+Creates an acceleration/deceleration controller, an spinner, for TB6612FNG driven motors and manages the events of speed updates and spin finish by calling callback functions.
+```C++
+Spinner(Motor *motor, SpinnerCB spinUpdated, SpinnerCB spinFinished)
+```
+
+### Arguments
+* `*motor`: Pointer to a `Motor` class representing the motor that is being spinned.
+* `spinUpdated`: Pointer to a `SpinnerCB` callback function for the event of motor speed updated. The function will receive as argument a pointer to a constant `SpinPoint` struct with the last speed set to the motor and the elapsed time, in milliseconds, since the spin start. See `SpinnerCB` type documentation for more info.
+* `spinFinished`: Pointer to a `SpinnerCB` callback function for the event of spin finished. The function will receive as argument a pointer to a constant `SpinPoint` struct with the final spinning speed and the spin process duration, in milliseconds. See `SpinnerCB` type documentation for more info.
+
+### Example
 ```C++
 #include <tb6612fng>
 
@@ -245,6 +259,21 @@ enum Direction
     CounterClockwise = -1
 }
 ```
+
+# Types
+
+## SpinnerCB
+Signature for the callback function that will be invoked by the class if initialized with the right constructor.
+
+```C++
+typedef void (*SpinnerCB)(const SpinPoint *spinPoint);
+```
+
+### Callback function arguments
+* `spinPoint`: Pointer to constant (read-only) `SpinPoint` struct. The specific content depends on the callback (see Constructor 2 documentation).
+
+### Callback function return value
+`void`
 
 # Structs
 
