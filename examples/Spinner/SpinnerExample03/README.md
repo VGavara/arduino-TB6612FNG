@@ -3,7 +3,7 @@ This example makes a motor spinning up from 2/5 of its max speed (engine speed 1
 
 This example is similar to [SpinnerExample02](https://github.com/VGavara/ArduinoTB6612FNG/tree/main/examples/Spinner/SpinnerExample02), that performs the same task not using callbacks. As can be seen by comparing both examples, using callbacks makes the code more encapsulated yet readable.
 
-This code can be simplified by using the multiple points map feature released in version 0.1.0 of the library. [SpinnerExample05](https://github.com/VGavara/ArduinoTB6612FNG/tree/main/examples/Spinner/SpinnerExample05) performs the same operation but using a multiple point map.
+This code can be simplified by using the multiple points map feature released in version 0.2.0 of the library. [SpinnerExample05](https://github.com/VGavara/ArduinoTB6612FNG/tree/main/examples/Spinner/SpinnerExample05) performs the same operation but using a multiple point map.
 
 In order to properly run the example follow these steps:
 1. Carefully study the datasheet before wiring the Arduino and driver. Driver datasheet is in the [/docs/datasheets](https://github.com/VGavara/ArduinoTB6612FNG/tree/main/docs/datasheets) directory.
