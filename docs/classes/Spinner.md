@@ -6,7 +6,7 @@
   * [How Spinner works](#how-spinner-works)
 - [Functions](#functions)
   * [Constructor](#constructor)
-  * [Constructor (2)](#constructor-2-)
+  * [Constructor (2)](#constructor-2)
   * [abort()](#abort--)
   * [spin()](#spin--)
   * [start()](#start--)
