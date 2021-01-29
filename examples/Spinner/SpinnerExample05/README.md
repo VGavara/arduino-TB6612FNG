@@ -1,4 +1,4 @@
-# Spinner example 03
+# Spinner example 05
 This example makes a motor spinning up from 2/5 of its max speed (engine speed 100 in a scale of 1-255) to 4/5 of its max speed (engine speed 200 in a scale of 1-255) in clockwise direction. Spinning up process takes 10s (10000ms) and, once it is completed, the led blinks and motor spins down from its current speed to full stopped in 30s (30000ms). Once it's fully stopped, the led is light.
 
 Though performing the same operation that [SpinnerExample02](https://github.com/VGavara/ArduinoTB6612FNG/tree/main/examples/Spinner/SpinnerExample02) and [SpinnerExample03](https://github.com/VGavara/ArduinoTB6612FNG/tree/main/examples/Spinner/SpinnerExample03), this code uses the multiple points map feature released in version 0.1.0 of the library, simplifying the code.
