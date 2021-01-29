@@ -18,14 +18,11 @@ Motor::Motor(PinMap *pinMap)
     pinMap_.in1 = pinMap->in1;
     pinMap_.in2 = pinMap->in2;
     pinMap_.pwm = pinMap->pwm;
-    pinMap_.stby = pinMap->stby;
 
     // Initialize the arduino pins
     pinMode(pinMap_.in1, OUTPUT);
     pinMode(pinMap_.in2, OUTPUT);
     pinMode(pinMap_.pwm, OUTPUT);
-    if (pinMap_.stby)
-        pinMode(pinMap_.stby, OUTPUT);
 }
 
 /**
@@ -35,9 +32,6 @@ Motor::Motor(PinMap *pinMap)
  */
 void Motor::run(Direction direction, uint8_t speed)
 {
-    // Clear standby mode
-    clearStandBy_(&pinMap_);
-
     // Set rotation direction
     direction == Direction::Clockwise ? rotateCW_(&pinMap_) : rotateCCW_(&pinMap_);
 
@@ -62,16 +56,6 @@ void Motor::brake()
 }
 
 /**
- * Sets the motor driver in standby mode
- */
-void Motor::standBy()
-{
-    setStandBy_(&pinMap_);
-}
-
-// Private functions
-
-/**
  * Sets clockwise rotation
  * @param {PinMap*} pinMap - Mapping of motor inputs and Arduino pins
  */
@@ -89,28 +73,6 @@ void Motor::rotateCCW_(PinMap *pinMap)
 {
     digitalWrite(pinMap->in1, LOW);
     digitalWrite(pinMap->in2, HIGH);
-}
-
-/**
- * Sets the driver in standby mode
- * @param {PinMap*} pinMap - Mapping of motor inputs and Arduino pins
- */
-void Motor::setStandBy_(PinMap *pinMap)
-{
-    // If the standby pin is configured, reset it
-    if (pinMap->stby)
-        digitalWrite(pinMap->stby, LOW);
-}
-
-/**
- * Sets the driver in operating (non-standby) mode
- * @param {PinMap*} pinMap - Mapping of motor inputs and Arduino pins
- */
-void Motor::clearStandBy_(PinMap *pinMap)
-{
-    // If the standby pin is configured, set it
-    if (pinMap->stby)
-        digitalWrite(pinMap->stby, HIGH);
 }
 
 /**

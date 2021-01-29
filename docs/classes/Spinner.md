@@ -75,7 +75,6 @@ PinMap pinMap;
 pinMap.in1 = D2; //Digital output D2 is connected to driver AIN1 input
 pinMap.in2 = D3; //Digital output D3 is connected to driver AIN2 input
 pinMap.pwm = D4; //Digital output D4 is connected to driver PWMA input
-pinMap.stby = D5; //Digital output D5 is connected to driver STBY input
 
 // Create a Motor object instance using the above pin map
 Motor motor(&pinMap);
@@ -127,7 +126,6 @@ PinMap pinMap;
 pinMap.in1 = D2; //Digital output D2 is connected to driver AIN1 input
 pinMap.in2 = D3; //Digital output D3 is connected to driver AIN2 input
 pinMap.pwm = D4; //Digital output D4 is connected to driver PWMA input
-pinMap.stby = D5; //Digital output D5 is connected to driver STBY input
 
 // Create a Motor object instance using the above pin map
 Motor motor(&pinMap);

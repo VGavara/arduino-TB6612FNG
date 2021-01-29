@@ -49,7 +49,6 @@ void setup()
     pinMap.in1 = DOUT1;
     pinMap.in2 = DOUT2;
     pinMap.pwm = PWMOUT;
-    pinMap.stby = 0;
     motor = new Motor(&pinMap);
 
     // Create a spinner object instance associated to motor
