@@ -51,14 +51,23 @@ public:
     Spinner(Motor *motor, SpinnerCB spinUpdated, SpinnerCB spinFinished);
 
     /**
-     * Starts a motor lineal acceleration/deceleration
+     * Starts a motor lineal acceleration/deceleration defined by a map with only two points
      * @param {Direction} direction - Motor rotation direction
      * @param {SpinPoint[]} spinMap - Spin map containing just two points: the start and end spin points
      * @returns {const SpinPoint*} Pointer to a constant SpinPoint struct containing the first spin map point or null if the start operation cannot be executed
-     * @note Only maps with two spin points are supported in this version. The first spin point must have the speed value set to the initial spin speed and the time value set to zero, the second and last spin point must have the speed value set to the final spin spped and the time value set to the spin ellapsed time
      * @note Starting a spin operation will abort a previous running spinning operation
      */
     const SpinPoint *start(Direction direction, SpinPoint spinMap[]);
+
+    /**
+     * Starts a motor lineal acceleration/deceleration defined by a map with multiple points
+     * @param {Direction} direction - Motor rotation direction
+     * @param {SpinPoint[]} spinMap - Spin map containing a list of spin points
+     * @param {uint8_t} spinMapSize - Number of spin points contained in the spin map
+     * @returns {const SpinPoint*} Pointer to a constant SpinPoint struct containing the first spin map point or null if the start operation cannot be executed
+     * @note Starting a spin operation will abort a previous running spinning operation
+     */
+    const SpinPoint *start(Direction direction, SpinPoint spinMap[], uint8_t spinMapSize);
 
     /**
      * Updates a running spin operation
