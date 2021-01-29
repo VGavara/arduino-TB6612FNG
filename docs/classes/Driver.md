@@ -5,8 +5,8 @@ The class `Driver`, together with the class `Motor`, can be considered the lowes
 - [Functions](#functions)
   * [Constructor](#constructor)
   * [Constructor (2)](#constructor-2)
-  * [standBy()](#standBy--)
-  * [standBy() (2)](#setStandBy---2)
+  * [standBy()](#standby)
+  * [standBy() (2)](standby-2)
 
 # Functions
 
