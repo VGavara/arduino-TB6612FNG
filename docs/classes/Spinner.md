@@ -276,8 +276,8 @@ spinMap[0].speed = 100;
 spinMap[1].time = 10000;
 spinMap[1].speed = 200;
 // The third and last map point states a speed of 0 (motor stopped), 40000 milliseconds after start spinning
-spinMap[1].time = 40000;
-spinMap[1].speed = 0;
+spinMap[2].time = 40000;
+spinMap[2].speed = 0;
 
 // Start spinning the motor in clockwise direction
 spinner->start(Clockwise, spinMap, 3);
