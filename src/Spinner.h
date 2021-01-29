@@ -87,7 +87,7 @@ private:
 
     SpinnerCB spinUpdatedCB_, spinFinishedCB_;
 
-    bool checkSpinMap_(SpinPoint[], uint8_t;
+    bool checkSpinMap_(SpinPoint[], uint8_t);
     unsigned long getElapsedTime_(unsigned long);
     void updateSpeed_(Motor *, Direction, SpinPoint *, SpinnerCB);
     uint8_t refreshSpinCourse_(SpinPoint *, uint8_t, unsigned long);
