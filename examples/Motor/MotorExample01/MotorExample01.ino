@@ -22,7 +22,6 @@ void setup()
     pinMap.in1 = DOUT1;  // Arduino DOUT1 output is connected to driver AIN1 input
     pinMap.in2 = DOUT2;  // Arduino DOUT2 output is connected to driver AIN2 input
     pinMap.pwm = PWMOUT; // Arduino PWMOUT output is connected to driver PWMA input
-    pinMap.stby = 0;     // Arduino is NOT connected to driver STBY input
 
     // Create a Motor object instance
     motor = new Motor(&pinMap);
