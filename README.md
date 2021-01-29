@@ -14,7 +14,8 @@ C++ library for controlling a Toshiba TB6612FNG motor driver throught the Arduin
 The Toshiba TB6612FNG is a motor driver capable of controlling two DC motors up to 15V (max) at 1200mA (avg). You can find the controller datasheet in the docs [datasheet](https://github.com/VGavara/ArduinoTB6612FNG/tree/main/docs/datasheets) directory.
 
 This C++ library contains a set of classes for controlling the above driver by interfacing it through the Arduino digital outputs:
-- The `Motor` class offers basic control on a brushed DC motor.
+- The `Motor` class offers basic control on every of the two brushed DC motors the driver can handle.
+- The `Driver` class offers basic control on the whole driver (basically managing its standby mode).
 - The `Spinner` class adds acceleration/decceleration features to the `Motor` class.
 
 # Repository structure

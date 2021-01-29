@@ -10,7 +10,8 @@
 // in case you were sure that your spin maps will always be properly defined
 #define TB6612FNG_OMIT_SPINMAP_INTEGRITY_CHECK
 
-#include "Spinner.h"
+#include "Driver.h"
 #include "Motor.h"
+#include "Spinner.h"
 
 #endif

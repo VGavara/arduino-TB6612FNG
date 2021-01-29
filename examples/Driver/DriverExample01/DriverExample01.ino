@@ -1,15 +1,17 @@
-// MotorExample01.ino
-// Usage example of the class Motor defined by the Arduino TB6612FNG Toshiba driver Library
+// DriverExample01.ino
+// Usage example of the class Driver defined by the Arduino TB6612FNG Toshiba driver Library
 // Copyright (c) Vicente Gavara. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 #include <tb6612fng.h>
 
-#define DOUT1 2  // Arduino digital IO
-#define DOUT2 3  // Arduino digital IO
-#define PWMOUT 4 // Arduino digital IO with PWM feature
-#define LED 13   // Arduino digital IO connected to the builtin led
+#define DOUT1 20  // Arduino digital IO
+#define DOUT2 21  // Arduino digital IO
+#define PWMOUT 19 // Arduino digital IO with PWM feature
+#define SBYOUT 18 // Arduino digital IO with PWM feature
+#define LED 13    // Arduino digital IO connected to the builtin led
 
+Driver *driver;
 Motor *motor;
 uint8_t speed;
 
@@ -34,6 +36,22 @@ void setup()
     // Initialize the variable
     // that will store the motor speed
     speed = 1;
+
+    // Create a Driver object instance defining the Arduino digital output SBYOUT
+    // as connected to the driver STBY input. By default this constructor
+    // will initially disable the driver standby mode
+    driver = new Driver((pin_size_t)SBYOUT);
+
+    if (!driver->standBy())
+    {
+        // Set the variable standBy to true if you want to set the driver in standby mode.
+        // In standby mode the motor will not run.
+        // Set the variable standBy to false to disable the driver standby mode
+        // and thus allow the motor running.
+        bool standBy = true;
+
+        driver->standBy(standBy);
+    }
 }
 
 void loop()
