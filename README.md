@@ -61,7 +61,6 @@ motor.brake();
 ```C++
 #include <tb6612fng>
 
-Motor *motor;
 Spinner *spinner;
 SpinPoint spinMap[2];
 
@@ -81,9 +80,9 @@ void setup()
     pinMap.in1 = 2; //Digital output 2 is connected to driver AIN1/BIN1 input
     pinMap.in2 = 3; //Digital output 3 is connected to driver AIN2/BIN2 input
     pinMap.pwm = 4; //Digital output 4 is connected to driver PWMA/PWMB input
-
-    motor = new Motor(&pinMap);
-
+    
+    spiner = new Spinner(new Motor(&pinMap), spinUpdated, spinFinished);
+    
     spinMap[0].time = 0;
     spinMap[0].speed = 100;   // Initial speed
     spinMap[1].time = 10000;
@@ -91,7 +90,7 @@ void setup()
     spinMap[2].time = 40000;
     spinMap[2].speed = 0;     // Final speed after 40 seconds
 
-    spiner = new Spinner(motor, spinUpdated, spinFinished);
+    spinner->start(Clockwise, spinMap);
 }
 
 void loop()
