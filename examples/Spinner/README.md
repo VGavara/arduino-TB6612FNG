@@ -1,4 +1,4 @@
-# Spinner examples.
+# Spinner examples
 
 This directory contains usage examples for the `Spinner` class, addressed to accelerate/deccelerate (spin-up/spin-down) a motor driven by a TB6612FNG. The contents of the directory are:
 
