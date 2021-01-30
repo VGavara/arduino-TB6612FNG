@@ -38,12 +38,25 @@ Spinner::Spinner(Motor *motor, SpinnerCB spinUpdated, SpinnerCB spinFinished) : 
  */
 const SpinPoint *Spinner::start(Direction direction, SpinPoint spinMap[])
 {
-    // This map has only two points
-    mapSize_ = 2;
+    return Spinner::start(direction, spinMap, 2);
+}
 
+/**
+ * Starts a motor lineal acceleration/deceleration defined by two spin points
+ * @param {Direction} direction - Motor rotation direction
+ * @param {SpinPoint[]} spinMap - Spin map containing just two points: the start and end spin points
+ * @param {uint8_t} spinMapSize - Number of spin points contained in the spin map
+ * @returns {const SpinPoint*} Pointer to a constant SpinPoint struct 
+ *  containing the first spin map point or null if the start operation cannot be executed
+ */
+const SpinPoint *Spinner::start(Direction direction, SpinPoint spinMap[], uint8_t spinMapSize)
+{
     // Check the spinMap integrity
-    if (!checkSpinMap_(spinMap, mapSize_))
+    if (!checkSpinMap_(spinMap, spinMapSize))
         return NULL;
+
+    // Store the map size
+    mapSize_ = spinMapSize;
 
     // Initialize the plan variables
     map_ = spinMap;
@@ -98,7 +111,7 @@ const SpinPoint *Spinner::spin()
                                   map_[currentmapPointIndex].speed,
                                   map_[currentmapPointIndex + 1].time,
                                   map_[currentmapPointIndex + 1].speed,
-                                  spinElapsedTime);
+                                  spinElapsedTime - map_[currentmapPointIndex].time);
     }
 
     // If the new speed is different to that previously set,

@@ -6,11 +6,15 @@
   * [How Spinner works](#how-spinner-works)
 - [Functions](#functions)
   * [Constructor](#constructor)
+  * [Constructor (2)](#constructor-2)
   * [abort()](#abort--)
   * [spin()](#spin--)
-  * [start()](#start--)
+  * [start()](#start)
+  * [start() (2)](#start-2)
 - [Enums](#enums)
   * [Direction](#direction)
+- [Types](#types)
+  * [SpinnerCB](#spinnercb)
 - [Structs](#structs)
   * [SpinPoint](#pinmap)
 
@@ -18,8 +22,6 @@
 The class `Spinner` builds upon the class `Motor`, adding acceleration features to it. 
 
 By acceleration must be understood a constant or variable speed change in a given period of time, therefore including an speed increase (commonly known as acceleration) or decrease (commonly known as decceleration).
-
-In the current release, the `Spinner` class supports a linear (ie constant) acceleration in a single period of time. As an example, such kind of acceleration could be described as *start now increasing the motor speed from 100 to 200 in 10000ms*.
 
 Since `Spinner` is based in the class `Motor` a reading of its documentations is recommended.
 
@@ -60,7 +62,7 @@ Spinner(Motor *motor)
 ### Arguments
 * `*motor`: Pointer to a `Motor` class representing the motor that is being spinned.
 
-### Example 1
+### Example
 ```C++
 #include <tb6612fng>
 
@@ -83,7 +85,18 @@ Motor motor(&pinMap);
 Spinner spinner(&motor);
 ```
 
-### Example 2
+## Constructor (2)
+Creates an acceleration/deceleration controller, an spinner, for TB6612FNG driven motors and manages the events of speed updates and spin finish by calling callback functions.
+```C++
+Spinner(Motor *motor, SpinnerCB spinUpdated, SpinnerCB spinFinished)
+```
+
+### Arguments
+* `*motor`: Pointer to a `Motor` class representing the motor that is being spinned.
+* `spinUpdated`: Pointer to a `SpinnerCB` callback function for the event of motor speed updated. The function will receive as argument a pointer to a constant `SpinPoint` struct with the last speed set to the motor and the elapsed time, in milliseconds, since the spin start. See `SpinnerCB` type documentation for more info.
+* `spinFinished`: Pointer to a `SpinnerCB` callback function for the event of spin finished. The function will receive as argument a pointer to a constant `SpinPoint` struct with the final spinning speed and the spin process duration, in milliseconds. See `SpinnerCB` type documentation for more info.
+
+### Example
 ```C++
 #include <tb6612fng>
 
@@ -200,7 +213,7 @@ spinner.spin();
 ```
 
 ## start()
-Starts a motor lineal acceleration/deceleration.
+Starts a motor lineal acceleration/deceleration defined by a spin map of just two spin points.
 ```C++
 const SpinPoint *start(Direction direction, SpinPoint spinMap[])
 ```
@@ -213,7 +226,7 @@ const SpinPoint *start(Direction direction, SpinPoint spinMap[])
 Pointer to a read-only `SpinPoint` struct with the initial motor speed, or `NULL` if the spinning start failed due to a wrong spin map definition. See "Spin points and maps" section to get further information about map definition. See struct `SpinMap` documentation for further information.
 
 ### Notes
-* Only maps with two spin points are supported in this version. The first spin point must have the speed value set to the initial spin speed and the time value set to zero, the second and last spin point must have the speed value set to the final spin speed and the time value set to the spin ellapsed time.
+* Only maps with two spin points are supported by this function. For maps with mor spin points, see [start (2)](#start-2)
 * Starting a spin operation will abort a previous running spinning operation.
 
 ### Example
@@ -233,6 +246,43 @@ spinMap[1].speed = 200;
 spinner->start(Clockwise, spinMap);
 ```
 
+## start() (2)
+Starts a motor lineal acceleration/deceleration defined by a spin map of two or more spin points.
+```C++
+const SpinPoint *start(Direction direction, SpinPoint spinMap[], uint8_t spinMapSize)
+```
+
+### Arguments
+* `direction`: Rotation direction. See enum `Direction` to check the possible values.
+* `spinMap`: Spin map containing only two points: the start and end spin points. See struct `SpinMap` documentation for further information.
+* `spinMapSize`: Number of spin points contained in the spin map
+
+### Return value
+Pointer to a read-only `SpinPoint` struct with the initial motor speed, or `NULL` if the spinning start failed due to a wrong spin map definition. See "Spin points and maps" section to get further information about map definition. See struct `SpinMap` documentation for further information.
+
+### Notes
+* Starting a spin operation will abort a previous running spinning operation.
+
+### Example
+```C++
+// Declare a spin map of three elements
+SpinPoint spinMap[3];
+
+// Define the spin map
+// The first map point (time = 0) states an initial speed of 100
+spinMap[0].time = 0;
+spinMap[0].speed = 100;
+// The second map point states a speed of 200, 10000 milliseconds after start spinning
+spinMap[1].time = 10000;
+spinMap[1].speed = 200;
+// The third and last map point states a speed of 0 (motor stopped), 40000 milliseconds after start spinning
+spinMap[2].time = 40000;
+spinMap[2].speed = 0;
+
+// Start spinning the motor in clockwise direction
+spinner->start(Clockwise, spinMap, 3);
+```
+
 # Enums
 
 ## Direction
@@ -245,6 +295,21 @@ enum Direction
     CounterClockwise = -1
 }
 ```
+
+# Types
+
+## SpinnerCB
+Signature for the callback function that will be invoked by the class if initialized with the right constructor.
+
+```C++
+typedef void (*SpinnerCB)(const SpinPoint *spinPoint);
+```
+
+### Callback function arguments
+* `spinPoint`: Pointer to constant (read-only) `SpinPoint` struct. The specific content depends on the callback (see Constructor 2 documentation).
+
+### Callback function return value
+`void`
 
 # Structs
 
