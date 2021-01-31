@@ -34,7 +34,6 @@ Motor(PinMap *pinMap)
 const pin_size_t D2 = 2;
 const pin_size_t D3 = 3;
 const pin_size_t D4 = 4;
-const pin_size_t D5 = 5;
 
 // Define the pin mapping for interfacing the driver motor A
 PinMap pinMap;
