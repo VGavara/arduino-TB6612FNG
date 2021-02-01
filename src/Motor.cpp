@@ -25,6 +25,28 @@ Motor::Motor(PinMap *pinMap)
     pinMode(pinMap_.pwm, OUTPUT);
 }
 
+#if defined(__SAMD21G18A__)
+/**
+ * Creates a motor controlled by a TB6612FNG driver 
+ * with custom PWM frequency for SAMD21 processors
+ * @constructor
+ * @param {PinMap*} pinMap - Mapping of motor inputs and Arduino pins
+ * @param {SAMD21CustomPWM*} customPWM - SAMD21 PWM timer configuration
+ * @note The mapped Arduino pins will be initialized by this function
+ */
+Motor::Motor(PinMap *pinMap, SAMD21CustomPWM *customPWM) : Motor(pinMap)
+{
+    int timer = getSAMD21Timer_(pinMap->pwm);
+    if (timer >= 0)
+    {
+        // PWM pin is associated to a timer: Initialize it
+        samd21PWM_.setClockDivider(customPWM->clockDivider, false);
+        samd21PWM_.timer(timer, customPWM->tccPrescaler, customPWM->resolution, false);
+        customPWM_ = true;
+    }
+}
+#endif
+
 /**
  * Runs the motor in a given direction at a given speed
  * @param {Direction} direction - Motor rotation direction
@@ -86,7 +108,18 @@ void Motor::setRotationSpeed_(PinMap *pinMap, uint8_t speed)
     // Zero value is equivalent to performing a braking, so that
     // value is not acceptable in this function
     if (speed > 0 && speed <= 255)
-        analogWrite(pinMap->pwm, speed);
+    {
+        if (customPWM_)
+        {
+            // Set speed in custom PWM
+#if defined(__SAMD21G18A__)
+            // Speed must be scaled to 1000
+            samd21PWM_.analogWrite(pinMap->pwm, round(speed * 3.92156862745098));
+#endif
+        }
+        else
+            analogWrite(pinMap->pwm, speed);
+    }
 }
 
 /**
@@ -110,3 +143,27 @@ void Motor::brakeRotation_(PinMap *pinMap)
     digitalWrite(pinMap->in1, HIGH);
     digitalWrite(pinMap->in2, HIGH);
 }
+
+#if defined(__SAMD21G18A__)
+/**
+ * Returns the SAMD21 timer associated to a given PWM pin
+ * @param {pin_size_t} pwmPin - PWM pin
+ * @returns {int} Associated timer (0, 1 or 2) or -1 if the pin is not a PWM timer associated pin
+ */
+int8_t Motor::getSAMD21Timer_(pin_size_t pwmPin)
+{
+    if (pwmPin != 0)
+    {
+        for (int timer = 0; timer < 3; timer++)
+        {
+            for (int pin = 0; pin < 4; pin++)
+            {
+                if (kSam32TimerPinMap[timer][pin] == pwmPin)
+                    return timer;
+            }
+        }
+    }
+
+    return -1;
+}
+#endif

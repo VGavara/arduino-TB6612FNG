@@ -7,6 +7,22 @@
 #define MOTOR_H
 
 #include <Arduino.h>
+#if defined(__SAMD21G18A__)
+#include <SAMD21turboPWM.h>
+#endif
+
+#if defined(__SAMD21G18A__)
+#if defined(ARDUINO_SAMD_NANO_33_IOT)
+// PWM pins associated to each timer in a Arduino SAMD Nano 33
+const uint8_t kSam32TimerPinMap[3][4] = {{5, 6, 8, 12}, {4, 7, 0, 0}, {11, 13, 0, 0}};
+#elif defined(ARDUINO_SAMD_ZERO)
+// PWM pins associated to each timer in a Arduino SAMD Zero
+const uint8_t kSam32TimerPinMap[3][4] = {{3, 4, 10, 12}, {8, 9, 0, 0}, {11, 13, 0, 0}};
+#else
+// PWM pins associated to each timer in a Arduino SAMD MKR series
+const uint8_t kSam32TimerPinMap[3][4] = {{4, 5, 6, 7}, {2, 3, 0, 0}, {8, 9, 0, 0}};
+#endif
+#endif
 
 /**
  * Rotation directions
@@ -32,6 +48,22 @@ typedef struct
     pin_size_t pwm;
 } PinMap;
 
+#if defined(__SAMD21G18A__)
+/**
+ * SAMD21 timer configuration for custom PWM frequency
+ * @typedef {struct} SAMD21CustomPWM
+ * @property {uint16_t}} clockDivider - Main clock divider
+ * @property {uint16_t}} tccPrescaler - TCCx prescaler
+ * @property {uint32_t}} resolution - Resolution (steps)
+ */
+typedef struct
+{
+    uint16_t clockDivider;
+    uint16_t tccPrescaler;
+    uint32_t resolution;
+} SAMD21CustomPWM;
+#endif
+
 /**
  * Represents a motor controlled by a TB6612FNG driver
  * @class
@@ -46,6 +78,18 @@ public:
      * @note The mapped Arduino pins will be initialized by this function
      */
     Motor(PinMap *pinMap);
+
+#if defined(__SAMD21G18A__)
+    /**
+     * Creates a motor controlled by a TB6612FNG driver 
+     * with custom PWM frequency for SAMD21 processors
+     * @constructor
+     * @param {PinMap*} pinMap - Mapping of motor inputs and Arduino pins
+     * @param {SAMD21CustomPWM*} customPWM - SAMD21 custom PWM timer configuration
+     * @note The mapped Arduino pins will be initialized by this function
+     */
+    Motor(PinMap *pinMap, SAMD21CustomPWM *customPWM);
+#endif
 
     /**
      * Runs the motor in a given direction at a given speed
@@ -69,12 +113,18 @@ public:
 
 private:
     PinMap pinMap_;
+    bool customPWM_ = false;
 
     void rotateCW_(PinMap *pinMap);
     void rotateCCW_(PinMap *pinMap);
     void setRotationSpeed_(PinMap *pinMap, uint8_t speed);
     void stopRotation_(PinMap *pinMap);
     void brakeRotation_(PinMap *pinMap);
+
+#if defined(__SAMD21G18A__)
+    TurboPWM samd21PWM_;
+    int8_t getSAMD21Timer_(pin_size_t pwmPin);
+#endif
 };
 
 #endif
