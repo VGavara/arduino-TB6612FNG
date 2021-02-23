@@ -16,11 +16,6 @@ uint8_t speed;
 
 void setup()
 {
-    // Debug
-    Serial.begin(115200);
-    while(!Serial) {};
-    Serial.println("Ready!");
-    
     // Declare and initialize the pin mapping
     // for interfacing the driver motor A
     PinMap pinMap;
@@ -32,7 +27,6 @@ void setup()
     // Create a Motor object instance
     // being controlled with a custom PWM signal of 40kHz
     motor = new Motor(&pinMap, 40000);
-    //motor = new Motor(&pinMap);
     
     // Initialize the led output
     // No need of initializing the mapped pins
