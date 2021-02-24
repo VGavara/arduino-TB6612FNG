@@ -40,13 +40,13 @@ void setup()
 
 void loop()
 {
-    if (speed < 128)
+    if (speed > 0)
     {
         // Run the motor clockwise at current speed
         motor->run(Direction::Clockwise, speed*256);
 
         // Perform a delay of 50ms
-        delay(100);
+        delay(50);
 
         // Increase the speed value.
         // speed variable will overflow to 0
