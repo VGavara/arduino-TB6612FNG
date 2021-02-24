@@ -1,5 +1,5 @@
 # Spinner example 01
-This example makes a motor spinning from 2/5 of its max speed (engine speed 100 in a scale of 1-255) to 4/5 of its max speed (engine speed 200 in a scale of 1-255) in clockwise direction. Spin process takes 10s (10000ms) and once it is completed, motor stops and a digital output, intended to light a led, is set.
+This example makes a motor spinning from 40% of its max speed (engine speed 26214 in a scale of 0-65535) to 80% of its max speed (engine speed 52428 in a scale of 0-65535) in clockwise direction. Spin process takes 10s (10000ms) and once it is completed, motor stops and a digital output, intended to light a led, is set.
 
 The example is easily comparable with [MotorExample01](https://github.com/VGavara/ArduinoTB6612FNG/tree/main/examples/Motor/MotorExample01), that implements a custom spinning not using the `Spinner` class.
 

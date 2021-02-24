@@ -1,5 +1,5 @@
 # Spinner example 02
-This example makes a motor spinning up from 2/5 of its max speed (engine speed 100 in a scale of 1-255) to 4/5 of its max speed (engine speed 200 in a scale of 1-255) in clockwise direction. Spinning up process takes 10s (10000ms) and, once it is completed, the led blinks and motor spins down from its current speed to full stopped in 30s (30000ms). Once it's fully stopped, the led is light.
+This example makes a motor spinning from 40% of its max speed (engine speed 26214 in a scale of 0-65535) to 80% of its max speed (engine speed 52428 in a scale of 0-65535) in clockwise direction. Spinning up process takes 10s (10000ms) and, once it is completed, the led blinks and motor spins down from its current speed to full stopped in 30s (30000ms). Once it's fully stopped, the led is light.
 
 This example is not based on callbacks but in checking the value returned by the `spin()` function. Though feasible, it makes the code more complex as you can see by comparing this example with [SpinnerExample03](https://github.com/VGavara/ArduinoTB6612FNG/tree/main/examples/Spinner/SpinnerExample03), that performs the same task but this time using callbacks.
 

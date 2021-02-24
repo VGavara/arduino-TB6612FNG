@@ -11,13 +11,13 @@
 /**
  * Spin point
  * @typedef {struct} SpinPoint
- * @property {uint8_t}} speed - Spin speed, from 0 to 255
+ * @property {uint16_t}} speed - Spin speed, from 0 (0%) to 65535 (100%)
  * @property {uint16_t} time - Elapsed time from the spin start, from 0 to 65535 milliseconds, in which speed must be reached
  * @example A spinPoint with value {20,100} indicates that, after 100 milliseconds of start spinning, a speed of 20 must be reached
  */
 struct SpinPoint
 {
-    uint8_t speed;
+    uint16_t speed;
     uint16_t time;
 };
 
