@@ -20,7 +20,7 @@ void spinUpdated(const SpinPoint *spinPoint)
     delay(10);
     digitalWrite(LED, LOW);
 
-    if (spinPoint->speed == 20)
+    if (spinPoint->speed == 5000)
     {
         spinner->abort();
     }
@@ -44,9 +44,9 @@ void setup()
     spinner = new Spinner(motor, spinUpdated, NULL);
 
     // Define the spin up map for accelerating the motor
-    // The first map point (time = 0) states an initial speed of 100
+    // The first map point (time = 0) states an initial speed of 26214 (40% of max speed)
     spinMap[0].time = 0;
-    spinMap[0].speed = 100;
+    spinMap[0].speed = 26214;
     // The last map point states a final speed of 0, 10000 milliseconds after start spinning
     spinMap[1].time = 20000;
     spinMap[1].speed = 0;

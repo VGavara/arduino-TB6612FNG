@@ -1,5 +1,5 @@
 # Spinner example 04
-This example makes a motor spinning down from 2/5 of its max speed (engine speed 100 in a scale of 1-255) to zero in counter-clockwise direction. However, when a speed of 20 in a scale of 1-255 is reached the spin operation is aborted. The led blinks every time the engine speed is updated until aborting the spinning, staying the led off since there are not updates on the motor speed. Aborting the operation doesn't stop the motor, but it keeps it rotating in the last spin speed reached.
+This example makes a motor spinning down from 40% of its max speed (engine speed 26214 in a scale of 0-65535) to zero in counter-clockwise direction. However, when a speed of 5000 in a scale of 0-65535 is reached the spin operation is aborted. The led blinks every time the engine speed is updated until aborting the spinning, staying the led off since there are not updates on the motor speed. Aborting the operation doesn't stop the motor, but it keeps it rotating in the last spin speed reached.
 
 In order to properly run the example follow these steps:
 1. Carefully study the datasheet before wiring the Arduino and driver. Driver datasheet is in the [/docs/datasheets](https://github.com/VGavara/ArduinoTB6612FNG/tree/main/docs/datasheets) directory.

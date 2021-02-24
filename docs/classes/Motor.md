@@ -34,7 +34,6 @@ Motor(PinMap *pinMap)
 const pin_size_t D2 = 2;
 const pin_size_t D3 = 3;
 const pin_size_t D4 = 4;
-const pin_size_t D5 = 5;
 
 // Define the pin mapping for interfacing the driver motor A
 PinMap pinMap;
@@ -64,16 +63,16 @@ motor.brake();
 ## run()
 Makes the motor rotate in a given direction at a given speed.
 ```C++
-void run(Direction direction, uint8_t speed)
+void run(Direction direction, uint16_t speed)
 ``` 
 ### Arguments
 * `direction`: Rotation direction. See enum `Direction` to check the possible values.
-* `speed`: Rotation speed, from 1 to 255.
+* `speed`: Rotation speed, from 1 to 65535.
 
 ### Example
 ```C++
 // Make the motor rotate clockwise at full speed
-motor.run(Direction::Clockwise, 255);
+motor.run(Direction::Clockwise, 65535);
 ```
 
 ## stop()

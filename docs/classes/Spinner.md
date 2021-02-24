@@ -26,11 +26,11 @@ By acceleration must be understood a constant or variable speed change in a give
 Since `Spinner` is based in the class `Motor` a reading of its documentations is recommended.
 
 ## Spin points and maps
-A spinning, or acceleration, can be described as a sequence of duples `speed-time` in a given period. For instance, if we are spinning (accelerating) a motor from 100 to 200 in 10000ms, the first duple in the spinning would be `(speed:100, time:0)` whereas the last one would be `(speed:200, time:10000)`. The duple `speed-time` is what this library names `spinPoint`.
+A spinning, or acceleration, can be described as a sequence of duples `speed-time` in a given period. For instance, if we are spinning (accelerating) a motor from 16000 to 32000 in 10000ms, the first duple in the spinning would be `(speed:16000, time:0)` whereas the last one would be `(speed:32000, time:10000)`. The duple `speed-time` is what this library names `spinPoint`.
 
-A sequence of `spinPoint`'s would describe a more or less complex spinning process. We could describe a spinning as we did in the paragraph above (spin from 100 to 200 in 10000ms) but we could also make it more complex, adding more spin *stages*. So, for instance, we could define a spinning starting from speed 100 to reach speed 200 in 10000ms (as before) but then lowering speed from 200 to 1 in 5000ms. In that way our motor would accelerate and then deccelerate until virtually stopping.
+A sequence of `spinPoint`'s would describe a more or less complex spinning process. We could describe a spinning as we did in the paragraph above (spin from 16000 to 32000 in 10000ms) but we could also make it more complex, adding more spin *stages*. So, for instance, we could define a spinning starting from speed 16000 to reach speed 32000 in 10000ms (as before) but then lowering speed from 32000 to 1 in 5000ms. In that way our motor would accelerate and then deccelerate until virtually stopping.
 
-An `spinMap` is a sorted list of `spinPoint`'s that define a more or less complex spinning process. The `spinPoint`'s in a `spinMap` can be considered as stages, or milestones, in the spinning process. As an example of `spinMap`, the previous simplest spinning process could be described as `[(speed:100, time:0),(speed:200, time:10000)]` whereas the more complex one could be described as `[(speed:100, time:0),(speed:200, time:10000),(speed:1, time:15000)]`.
+An `spinMap` is a sorted list of `spinPoint`'s that define a more or less complex spinning process. The `spinPoint`'s in a `spinMap` can be considered as stages, or milestones, in the spinning process. As an example of `spinMap`, the previous simplest spinning process could be described as `[(speed:16000, time:0),(speed:32000, time:10000)]` whereas the more complex one could be described as `[(speed:16000, time:0),(speed:32000, time:10000),(speed:1, time:15000)]`.
 
 ### Spin map integrity
 When an spin map is assigned to a spinning process, an integrity check is done before start spinning. If the integrity check fails, the spinning start fails and the `start()` function returns `NULL`, as explained below. The rules for creating valid spin maps are:
@@ -235,12 +235,12 @@ Pointer to a read-only `SpinPoint` struct with the initial motor speed, or `NULL
 SpinPoint spinMap[2];
 
 // Define the spin map
-// The first map point (time = 0) states an initial speed of 100
+// The first map point (time = 0) states an initial speed of 16000
 spinMap[0].time = 0;
-spinMap[0].speed = 100;
-// The last map point states a final speed of 200, 10000 milliseconds after start spinning
+spinMap[0].speed = 16000;
+// The last map point states a final speed of 32000, 10000 milliseconds after start spinning
 spinMap[1].time = 10000;
-spinMap[1].speed = 200;
+spinMap[1].speed = 32000;
 
 // Start spinning the motor in clockwise direction
 spinner->start(Clockwise, spinMap);
@@ -269,12 +269,12 @@ Pointer to a read-only `SpinPoint` struct with the initial motor speed, or `NULL
 SpinPoint spinMap[3];
 
 // Define the spin map
-// The first map point (time = 0) states an initial speed of 100
+// The first map point (time = 0) states an initial speed of 16000
 spinMap[0].time = 0;
-spinMap[0].speed = 100;
-// The second map point states a speed of 200, 10000 milliseconds after start spinning
+spinMap[0].speed = 16000;
+// The second map point states a speed of 32000, 10000 milliseconds after start spinning
 spinMap[1].time = 10000;
-spinMap[1].speed = 200;
+spinMap[1].speed = 32000;
 // The third and last map point states a speed of 0 (motor stopped), 40000 milliseconds after start spinning
 spinMap[2].time = 40000;
 spinMap[2].speed = 0;
@@ -314,15 +314,15 @@ typedef void (*SpinnerCB)(const SpinPoint *spinPoint);
 # Structs
 
 ## SpinPoint
-Represents a duple speed-time in a spinning process, ie, the motor speed (from 0 to 255) *time* milliseconds after starting an spinning process.
+Represents a duple speed-time in a spinning process, ie, the motor speed (from 0 to 65535) *time* milliseconds after starting an spinning process.
 
 ```C++
 struct SpinPoint
 {
-    uint8_t speed;
+    uint16_t speed;
     uint16_t time;
 };
 ```
 
-* Field `speed` represents the motor speed in a scale from 0 to 255.
+* Field `speed` represents the motor speed in a scale from 0 to 65535.
 * Field `time` represents the elapsed time, from 1 to 65535 milliseconds, after start spinning in which `speed` is reached.

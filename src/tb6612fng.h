@@ -6,10 +6,6 @@
 #ifndef TB6612FNG_H
 #define TB6612FNG_H
 
-// Define this symbol to remove the Spin map integrity check (class Spinner)
-// in case you were sure that your spin maps will always be properly defined
-#define TB6612FNG_OMIT_SPINMAP_INTEGRITY_CHECK
-
 #include "Driver.h"
 #include "Motor.h"
 #include "Spinner.h"

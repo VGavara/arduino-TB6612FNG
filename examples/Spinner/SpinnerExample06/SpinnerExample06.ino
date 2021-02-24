@@ -2,8 +2,10 @@
 
 #define DOUT1 20  // Arduino digital IO
 #define DOUT2 21  // Arduino digital IO
-#define PWMOUT 19 // Arduino digital IO with PWM feature
+#define PWMOUT 12 // Arduino digital IO with PWM feature
 #define LED 13    // Arduino digital IO connected to the builtin led
+
+#define CUSTOMPWMFREQ 40000 // Custom PWM frequency: 40kHz (valid values: 732-100000)
 
 Motor *motor;
 Spinner *spinner;
@@ -45,12 +47,13 @@ void setup()
     pinMode(LED, OUTPUT);
 
     // Create a Motor object instance
+    // driven with a custom PWM frequency
     // (pinMap pins are initialized by the Motor class)
     PinMap pinMap;
     pinMap.in1 = DOUT1;
     pinMap.in2 = DOUT2;
     pinMap.pwm = PWMOUT;
-    motor = new Motor(&pinMap);
+    motor = new Motor(&pinMap, CUSTOMPWMFREQ);
 
     // Create a spinner object instance associated to motor
     // using only one callback function for handling the event of spin finished
