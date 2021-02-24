@@ -24,8 +24,9 @@
 None relevant.
 
 ### Deprecated
-None
-
+- `Motor` class: 8-bit resolution speeds with a range of 0-255 no longer supported.
+- `Spinner` class: 8-bit resolution speeds with a range of 0-255 no longer supported.
+- 
 ## Release v0.2.0
 ### New features
 - `Spinner`class: Support to linear maps with more than one, single stage.
