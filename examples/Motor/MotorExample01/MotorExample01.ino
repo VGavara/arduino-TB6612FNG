@@ -41,7 +41,7 @@ void loop()
     if (speed > 0)
     {
         // Run the motor clockwise at current speed
-        motor->run(Direction::Clockwise, speed);
+        motor->run(Direction::Clockwise, speed * 255);
 
         // Perform a delay of 50ms
         delay(50);
