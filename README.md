@@ -64,7 +64,7 @@ motor.brake();
 #include <tb6612fng>
 
 Spinner *spinner;
-SpinPoint spinMap[2];
+SpinPoint spinMap[3];
 
 void spinUpdated(const SpinPoint *spinPoint)
 {

@@ -57,12 +57,12 @@ void setup()
     spinner = new Spinner(motor, spinUpdated, spinFinished);
 
     // Define the spin up map for accelerating and then deccelerating the motor
-    // The first map point (time = 0) states an initial speed of 100
+    // The first map point (time = 0) states an initial speed of 26214 (40% of max speed)
     spinMap[0].time = 0;
-    spinMap[0].speed = 100;
-    // The intermediate map point states a speed of 200, 10000 milliseconds after start spinning
+    spinMap[0].speed = 26214;
+    // The intermediate map point states a speed of 52428 (80% of max speed), 10000 milliseconds after start spinning
     spinMap[1].time = 10000;
-    spinMap[1].speed = 200;
+    spinMap[1].speed = 52428;
     // The last map point states a final speed of 0 (motor stoped), 40000 milliseconds after start spinning
     spinMap[2].time = 40000;
     spinMap[2].speed = 0;
