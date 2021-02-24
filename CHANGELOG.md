@@ -16,9 +16,7 @@
 - `Spinner` class: Support to 16-bit speed resolution on spin maps.
  
 ### Improved features
-- Documentation improved:
-  * Index document in `Spinner` examples.
-  * "At a glance" and "Getting started" sections added to root README.md.
+None relevant.
 
 ### Fixed problems
 None relevant.
