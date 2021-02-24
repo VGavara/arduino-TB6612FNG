@@ -51,7 +51,7 @@ pinMap.pwm = 4; //Digital output 4 is connected to driver PWMA/PWMB input
 // Omit the second argument for using default PWM frequency.
 Motor motor(&pinMap, 40000);
 
-uint8_t speed = 255;
+uint8_t speed = 65535;
 motor.run(Clockwise, speed);
 
 delay(50);
@@ -86,11 +86,11 @@ void setup()
     spiner = new Spinner(new Motor(&pinMap), spinUpdated, spinFinished);
     
     spinMap[0].time = 0;
-    spinMap[0].speed = 100;   // Initial speed
+    spinMap[0].speed = 21845;   // Initial speed (21845/65535 = 33% of max speed)
     spinMap[1].time = 10000;
-    spinMap[1].speed = 200;   // Intermediate speed after 10 seconds
+    spinMap[1].speed = 43690;   // Intermediate speed after 10 seconds (66% of max speed)
     spinMap[2].time = 40000;
-    spinMap[2].speed = 0;     // Final speed after 40 seconds
+    spinMap[2].speed = 0;       // Final speed after 40 seconds (stopped)
 
     spinner->start(Clockwise, spinMap);
 }
