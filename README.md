@@ -51,7 +51,7 @@ pinMap.pwm = 4; //Digital output 4 is connected to driver PWMA/PWMB input
 // Omit the second argument for using default PWM frequency.
 Motor motor(&pinMap, 40000);
 
-uint8_t speed = 65535;
+uint16_t speed = 65535;
 motor.run(Clockwise, speed);
 
 delay(50);
