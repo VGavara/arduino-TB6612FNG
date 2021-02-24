@@ -47,7 +47,9 @@ pinMap.in1 = 2; //Digital output 2 is connected to driver AIN1/BIN1 input
 pinMap.in2 = 3; //Digital output 3 is connected to driver AIN2/BIN2 input
 pinMap.pwm = 4; //Digital output 4 is connected to driver PWMA/PWMB input
 
-Motor motor(&pinMap);
+// Use a custom PWM frequency of 40kHz (only valid for SAMD21 based Arduinos).
+// Omit the second argument for using default PWM frequency.
+Motor motor(&pinMap, 40000);
 
 uint8_t speed = 255;
 motor.run(Clockwise, speed);
