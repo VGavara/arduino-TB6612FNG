@@ -11,6 +11,7 @@
 - [Getting started](#getting-started)
 - [Repository structure](#repository-structure)
 - [Contributions to the project](#contributions-to-the-project)
+- [Questions and answers](#questions-and-answers)
 - [Attributions and references](#attributions-and-references)
 
 # Overview
@@ -122,7 +123,7 @@ This repository is structured in these directories:
 # Contributions to the project
 In case you were interested in participating in this project, read [CONTRIBUTING.md](https://github.com/VGavara/ArduinoTB6612FNG/tree/main/CONTRIBUTING.md) for further information.
 
-## Questions and answers
+# Questions and answers
 Last, but not least, if you have a question just ask it in the Discussions [Questions & Answers](https://github.com/VGavara/ArduinoTB6612FNG/discussions/categories/questions-answers) category. Don't be shy, exposing questions is also a way of collaborating with the project: many good ideas start with a good question.
 
 
