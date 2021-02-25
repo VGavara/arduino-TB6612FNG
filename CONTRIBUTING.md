@@ -11,10 +11,13 @@ This document is divided in several sections, containing different information t
 Below you'll find different ways of collaboration sorted by what I consider is more probable collaborations to less probable.
 
 ## I want to submit a bug
-If you have found a bug, the best way of communicating it is by creatting an issue describing it. Take your time to do it in the best way: fixing a bug is not always easy, and the more information you provide the easier will be. Any kind of additional data (screenshots, videos, ...) will help, though not extrictly necessary. Last but not least, be sure of labelling the issue as bug.
+If you have found a bug, the best way of communicating it is by creating a new discussion in the [Spooky Stuff](https://github.com/VGavara/ArduinoTB6612FNG/discussions/categories/spooky-stuff) category. Take your time to describe it in the best way: fixing a bug is not always easy, and the more information you provide the easier will be. Any kind of additional data (screenshots, videos, ...) will help, though they were not extrictly necessary.
 
 ## I want to suggest a new feature
-So you have used the library and missed some feature that would be nice to have. In that case you can create an issue labelled as "proposal". Those proposals considered as interesting will be converted into features. Finally they will be programmed to be published in a given release.
+So you have used the library and missed some feature that would be nice to have. In that case feel free of start a discussion in the [Ideas](https://github.com/VGavara/ArduinoTB6612FNG/discussions/categories/ideas) category. Those proposals considered as interesting will be converted into features. Finally they will be programmed to be published in a given release.
+
+## I just have a question
+Asking questions is also a way of collaboration: some questions are the inspiration of new features that for sure improve the library. If you have a question, just ask it in the Discussions [Questions & Answers](https://github.com/VGavara/ArduinoTB6612FNG/discussions/categories/questions-answers) category.
 
 ## I want to work on a good first issue
 Some existing issues are labelled as "good first issue", meaning that they are a good starting point for begin collaborating in the project. If you have identified such a issue, please contact the repository owner to discuss specific details of the issue before starting coding. In case you didn't have chosen an issue, again contact the repository owner for discussing what could be a your good first issue.
