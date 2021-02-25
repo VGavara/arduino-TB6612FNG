@@ -107,6 +107,8 @@ void loop()
 # Getting started
 First, download the library source files from the [latest release available](https://github.com/VGavara/ArduinoTB6612FNG/releases/latest) and install them locally by following the tutorial [Installing Additional Arduino Libraries](https://www.arduino.cc/en/guide/libraries), specifically as explained in the sections "Importing a .zip library" or "Manual installation".
 
+Some of the library features are based on external libraries, specifically [SAMD21 turbo PWM](https://github.com/ocrdu/Arduino_SAMD21_turbo_PWM). You will also need to install those dependencies by following the tutorial refered in the previous paragraph.
+
 Once installed locally, you can download and test any of the examples contained in the [examples](https://github.com/VGavara/ArduinoTB6612FNG/tree/main/examples) directory. Every example contains hardware wiring information to help you connecting your Arduino and TB6612FNG driver.
 
 Finally, you can get detailed information of every class by reading the references contained in the directory [docs/classes](https://github.com/VGavara/ArduinoTB6612FNG/tree/main/docs/classes).
