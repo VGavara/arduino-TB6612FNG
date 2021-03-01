@@ -3,8 +3,8 @@ The class `Motor`, together with the class `Driver`, can be considered the lowes
 
 # Table of contents
 - [Functions](#functions)
-  * [Constructor (1)]((#constructor--1-))
-  * [Constructor (2)]((#constructor--2-))
+  * [Constructor (1)]((#constructor-1))
+  * [Constructor (2)]((#constructor-2))
   * [brake()](#brake--)
   * [run()](#run--)
   * [stop()](#stop--)
