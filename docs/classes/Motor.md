@@ -54,7 +54,7 @@ Motor(PinMap *pinMap, uint32_t customPWMFrequency)
 
 ### Arguments
 * `*pinMap`: Pointer to a `PinMap` struct defining the pin mapping between the Arduino and the driver.
-* `customPWMFrequency`: Custom PWM frequency, in Hertzs
+* `customPWMFrequency`: Custom PWM frequency, in Hertzs, from 732 (default SAMD21 Arduino PWM frequency) to 100000 Hz (100kHz, the max TB6612FNG switching frequency)
  
 ### Notes
 * The class constructor will initialize the mapped Arduino pin modes by calling `pinMode`.
