@@ -3,19 +3,19 @@ The class `Motor`, together with the class `Driver`, can be considered the lowes
 
 # Table of contents
 - [Functions](#functions)
-  * [Constructor (1)]((##constructor--1-))
-  * [Constructor (2)]((##constructor-2))
-  * [brake()](##brake--)
-  * [run()](##run--)
-  * [stop()](##stop--)
+  * [Constructor (1)](#constructor)
+  * [Constructor (2)](#constructor-2)
+  * [brake()](#brake)
+  * [run()](#run)
+  * [stop()](#stop)
 - [Enums](#enums)
-  * [Direction](##direction)
+  * [Direction](#direction)
 - [Structs](#structs)
-  * [PinMap](##pinmap)
+  * [PinMap](#pinmap)
 
 # Functions
 
-## Constructor (1)
+## Constructor
 Initializes a new `Motor` object instance.
 ```C++
 Motor(PinMap *pinMap)
