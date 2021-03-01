@@ -1,7 +1,7 @@
 # Arduino TB6612FNG library changelog
 
 - [Version 0](#version-0)
-  * [Release 0.4.0](##release-v0.4.0)
+  * [Release 0.3.1](##release-v0.3.1)
   * [Release 0.3.0](##release-v0.3.0)
   * [Release 0.2.0](##release-v0.2.0)
   * [Release 0.1.0](##release-v0.1.0)
@@ -9,18 +9,18 @@
 
 # Version 0
 
-## Release v0.4.0
-In progress.
-
+## Release v0.3.1
 ### New features
- 
+None.
+
 ### Improved features
+None.
 
 ### Fixed problems
 - `Motor` class documentation updated to include the support to custom PWM frequency.
 
 ### Deprecated
-
+None.
 
 ## Release v0.3.0
 ### New features
