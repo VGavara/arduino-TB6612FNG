@@ -17,7 +17,7 @@
 # Overview
 C++ library for controlling a Toshiba TB6612FNG motor driver throught the Arduino digital outputs. 
 
-The Toshiba TB6612FNG is a motor driver capable of controlling two DC motors up to 15V (max) at 1200mA (avg). You can find the controller datasheet in the docs [datasheet](https://github.com/VGavara/ArduinoTB6612FNG/tree/main/docs/datasheets) directory.
+The Toshiba TB6612FNG is a motor driver capable of controlling two DC motors up to 15V (max) at 1200mA (avg). You can find the controller datasheet in the docs [datasheet](https://github.com/VGavara/ArduinoTB6612FNG/tree/stable/docs/datasheets) directory.
 
 This C++ library contains a set of classes for controlling the above driver by interfacing it through the Arduino digital outputs:
 - The `Motor` class offers basic control on every of the two brushed DC motors the driver can handle.
@@ -110,18 +110,18 @@ First, download the library source files from the [latest release available](htt
 
 Some of the library features are based on external libraries, specifically [SAMD21 turbo PWM](https://github.com/ocrdu/Arduino_SAMD21_turbo_PWM). You will also need to install those dependencies by following the tutorial refered in the previous paragraph.
 
-Once installed locally, you can download and test any of the examples contained in the [examples](https://github.com/VGavara/ArduinoTB6612FNG/tree/main/examples) directory. Every example contains hardware wiring information to help you connecting your Arduino and TB6612FNG driver.
+Once installed locally, you can download and test any of the examples contained in the [examples](https://github.com/VGavara/ArduinoTB6612FNG/tree/stable/examples) directory. Every example contains hardware wiring information to help you connecting your Arduino and TB6612FNG driver.
 
-Finally, you can get detailed information of every class by reading the references contained in the directory [docs/classes](https://github.com/VGavara/ArduinoTB6612FNG/tree/main/docs/classes).
+Finally, you can get detailed information of every class by reading the references contained in the directory [docs/classes](https://github.com/VGavara/ArduinoTB6612FNG/tree/stable/docs/classes).
 
 # Repository structure
 This repository is structured in these directories:
-- [/docs](https://github.com/VGavara/ArduinoTB6612FNG/tree/main/docs): It contains the library documentation, as classes references and datasheets.
-- [/examples](https://github.com/VGavara/ArduinoTB6612FNG/tree/main/examples): It contains usage examples of each class. It is a good place for getting a quick idea regarding what this library can do for you.
-- [/src](https://github.com/VGavara/ArduinoTB6612FNG/tree/main/src): It contains the library source code.
+- [/docs](https://github.com/VGavara/ArduinoTB6612FNG/tree/stable/docs): It contains the library documentation, as classes references and datasheets.
+- [/examples](https://github.com/VGavara/ArduinoTB6612FNG/tree/stable/examples): It contains usage examples of each class. It is a good place for getting a quick idea regarding what this library can do for you.
+- [/src](https://github.com/VGavara/ArduinoTB6612FNG/tree/stable/src): It contains the library source code.
 
 # Contributions to the project
-In case you were interested in participating in this project, read [CONTRIBUTING.md](https://github.com/VGavara/ArduinoTB6612FNG/tree/main/CONTRIBUTING.md) for further information.
+In case you were interested in participating in this project, read [CONTRIBUTING.md](https://github.com/VGavara/ArduinoTB6612FNG/tree/stable/CONTRIBUTING.md) for further information.
 
 # Questions and answers
 Last, but not least, if you have a question just ask it in the Discussions [Questions & Answers](https://github.com/VGavara/ArduinoTB6612FNG/discussions/categories/questions-answers) category. Don't be shy, exposing questions is also a way of collaborating with the project: many good ideas start with a good question.
